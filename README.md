@@ -19,7 +19,7 @@ Estático (HTML, CSS e JS puros), publicado no GitHub Pages: https://azeugral.gi
 - Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada 6 s. Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
 - Intro (v3): a logo é pintada no centro, uma trinca vermelha a atravessa e a tela se parte em duas metades que abrem para a hero (cerca de 2,4 s). Depois, cada peça da hero entra em sequência.
 - Fundo da hero (v3): cacos de vidro flutuando devagar (alguns vermelhos) e uma trinca vermelha fina que se desenha no fundo.
-- Hero (v6): de volta às duas colunas. À esquerda ficam a logo, o texto de estilos, os botões e os selos (estúdio privado, hora marcada, pagamento); à direita, a foto que troca sozinha a cada 6 s em fragmentos. A nav não tem logo, só os links centralizados e o botão de orçamento.
+- Hero (v6): de volta às duas colunas. À esquerda ficam a logo, o texto de estilos, os botões e os selos (estúdio privado, hora marcada, pagamento); à direita, a foto que troca sozinha a cada 6 s em fragmentos. A nav não tem logo: os links e o botão "Pedir orçamento" (vermelho, com ícone do WhatsApp e sombra) ficam juntos no centro, separados por um fio. No celular o botão fica ao lado do menu.
 - Quebras em vermelho (v3): trincas entre seções, que se desenham ao rolar, e títulos partidos com fio vermelho (Estilos, Flash, Como agendar, contato).
 
 ## CONFIRMAR com o cliente
