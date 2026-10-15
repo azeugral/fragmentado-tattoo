@@ -19,6 +19,7 @@ Estático (HTML, CSS e JS puros), publicado no GitHub Pages: https://azeugral.gi
 - Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada 6 s. Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
 - Intro (v3): a logo é pintada no centro, uma trinca vermelha a atravessa e a tela se parte em duas metades que abrem para a hero (cerca de 2,4 s). Depois, cada peça da hero entra em sequência.
 - Fundo da hero (v3): cacos de vidro flutuando devagar (alguns vermelhos) e uma trinca vermelha fina que se desenha no fundo.
+- Hero (v4): o texto virou um índice de estilos (Floral, Dark art, Blackwork, Lettering) ligado à foto. A linha ativa acende com a barra vermelha, tocar numa linha troca a foto, e no celular o índice vira uma faixa de 4 colunas sob a foto. Fotos em `HERO` do `processar.py`.
 - Quebras em vermelho (v3): trincas entre seções, que se desenham ao rolar, e títulos partidos com fio vermelho (Estilos, Flash, Como agendar, contato).
 
 ## CONFIRMAR com o cliente
@@ -37,3 +38,4 @@ Dados tirados do Instagram e dos destaques. O que está marcado como genérico f
 10. **Tattoo Rock 2026 (Araras)**: primeira convenção, post de 30/07.
 11. **Parcelamento no cartão**: não informado.
 12. **Domínio**: ainda não definido.
+13. **"Agenda aberta"** no topo da hero: veio do post de agenda de outubro a dezembro. Trocar quando a agenda fechar.

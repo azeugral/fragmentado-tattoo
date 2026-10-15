@@ -64,9 +64,9 @@
   if (hx) {
     const frame = hx.querySelector('.hx-frame'), full = hx.querySelector('.hx-full');
     const slides = JSON.parse(hx.dataset.slides);
-    const num = hx.querySelector('.hx-num'), leg = hx.querySelector('.hx-leg'), bar = hx.querySelector('.hx-bar i');
+    const tag = hx.querySelector('.hx-tag'), botoes = [...d.querySelectorAll('.he')];
     const HOLD = 6000;
-    let atual = 0, timer = 0, visivel = true, ocupado = false;
+    let atual = 0, timer = 0, visivel = true, ocupado = false, pendente = null;
 
     // triângulos sobre uma malha com pontos deslocados (semente fixa: sempre o mesmo corte)
     let s = 7;
@@ -117,17 +117,30 @@
       }).finished;
     }));
 
-    const legenda = i => {
-      num.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
-      leg.textContent = slides[i].leg;
-      bar.classList.remove('run'); void bar.offsetWidth; bar.style.setProperty('--t', HOLD + 'ms'); bar.classList.add('run');
+    const legenda = (i, dur = HOLD + (calmo ? 600 : 1500)) => {
+      botoes.forEach((b, k) => {
+        const on = k === i, barra = b.querySelector('.he-bar i');
+        b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));
+        barra.classList.remove('run');
+        if (on) { void barra.offsetWidth; barra.style.setProperty('--t', dur + 'ms'); barra.classList.add('run'); }
+      });
+      tag.classList.add('troca');
+      setTimeout(() => { tag.innerHTML = `<b>${String(i + 1).padStart(2, '0')}</b><span>${slides[i].leg}</span>`; tag.classList.remove('troca'); }, 300);
     };
-    const carrega = src => new Promise(res => { const im = new Image(); im.onload = im.onerror = () => (im.decode ? im.decode().catch(() => {}).then(res) : res()); im.src = src; });
-    const agenda = () => { clearTimeout(timer); if (visivel && !d.hidden) timer = setTimeout(proxima, HOLD); };
+    // decode() pode ficar pendente numa aba em segundo plano: nunca espera mais que alguns ms por ele
+    const espera = ms => new Promise(r => setTimeout(r, ms));
+    const carrega = src => Promise.race([new Promise(res => {
+      const im = new Image();
+      im.onload = () => Promise.race([im.decode ? im.decode().catch(() => {}) : null, espera(250)]).then(res);
+      im.onerror = res; im.src = src;
+    }), espera(3000)]);
+    const agenda = () => { clearTimeout(timer); if (visivel && !d.hidden) timer = setTimeout(() => proxima(), HOLD); };
 
-    async function proxima() {
-      if (ocupado) return; ocupado = true;
-      const prox = (atual + 1) % slides.length;
+    async function proxima(alvo) {
+      if (ocupado) { if (alvo != null) pendente = alvo; return; }
+      const prox = alvo != null ? alvo : (atual + 1) % slides.length;
+      if (prox === atual) return;
+      ocupado = true; clearTimeout(timer); legenda(prox);
       await carrega(slides[prox].src);
       if (calmo) {
         full.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 300, fill: 'forwards' }).finished.then(() => {
@@ -140,18 +153,20 @@
         full.src = slides[prox].src; await carrega(slides[prox].src);
         full.style.visibility = ''; sai.remove(); entra.remove();
       }
-      atual = prox; legenda(atual); ocupado = false; agenda();
+      atual = prox; ocupado = false;
+      if (pendente != null) { const p = pendente; pendente = null; proxima(p); } else agenda();
     }
+    botoes.forEach((b, k) => b.addEventListener('click', () => proxima(k)));
 
     // primeira montagem: espera a intro abrir a página
     if (!calmo) {
       full.style.visibility = 'hidden';
-      const espera = root.classList.contains('js-intro') ? 1350 : 120;
-      Promise.all([carrega(slides[0].src), new Promise(r => setTimeout(r, espera))]).then(() => {
+      const atraso = root.classList.contains('js-intro') ? 1350 : 120;
+      Promise.all([carrega(slides[0].src), espera(atraso)]).then(() => {
         const g = montarSet(slides[0].src);
-        anima(g, true).then(() => { full.style.visibility = ''; g.remove(); legenda(0); agenda(); });
+        anima(g, true).then(() => { full.style.visibility = ''; g.remove(); legenda(0, HOLD); agenda(); });
       });
-    } else { legenda(0); agenda(); }
+    } else { legenda(0, HOLD); agenda(); }
 
     // pausa fora da tela ou com a aba escondida
     new IntersectionObserver(([e]) => { visivel = e.isIntersecting; visivel ? agenda() : clearTimeout(timer); }).observe(hx);

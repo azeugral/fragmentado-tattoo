@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cinzel:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
 <link rel="preload" as="image" href="assets/img/hero-1.webp">
-<link rel="preload" as="image" href="assets/logo.webp">
+<link rel="preload" as="image" href="assets/logo.webp" crossorigin>
 <link rel="stylesheet" href="assets/site.css">
 <script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)h.classList.add('js-intro')}catch(e){}})()</script>
 <script type="application/ld+json">
@@ -67,19 +67,25 @@
 <section class="hero" id="inicio">
   <div class="hero-fx" aria-hidden="true"></div>
   <svg class="hero-trinca" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <polyline points="0,80 11,74 19,77 30,66 43,68 54,55 62,58 73,44 85,41 92,30 100,27"/>
-    <polyline class="ramo" points="54,55 57,62 55,70"/>
-    <polyline class="ramo" points="73,44 78,50 84,52"/>
-    <polyline class="ramo" points="30,66 32,58"/>
+    <polyline points="50,100 56,90 53,82 62,72 69,68 67,58 78,48 86,45 92,33 100,28"/>
+    <polyline class="ramo" points="62,72 66,79 65,86"/>
+    <polyline class="ramo" points="78,48 83,54 89,55"/>
+    <polyline class="ramo" points="92,33 95,40"/>
   </svg>
   <div class="wrap">
     <div class="hero-txt">
-      <p class="kicker">Santa Bárbara d'Oeste · SP</p>
+      <p class="kicker"><strong>Agenda aberta</strong> Santa Bárbara d'Oeste · SP</p>
       <h1 class="logo" aria-label="Fragmentado Tattoo Studio">
         <span class="logo-marca" aria-hidden="true"></span>
         <span class="logo-sub" aria-hidden="true">Tattoo Studio</span>
       </h1>
-      <p class="lead">Blackwork, floral, dark art e lettering. Fechamentos de braço e projetos autorais feitos em estúdio privado, com hora marcada.</p>
+      <p class="lead">Fechamentos de braço e projetos autorais em estúdio privado, com hora marcada.</p>
+      <ol class="hero-estilos" aria-label="Estilos do estúdio">
+        <li><button type="button" class="he on" data-i="0" aria-pressed="true"><b>01</b><span>Floral</span><i class="he-bar"><i></i></i></button></li>
+        <li><button type="button" class="he" data-i="1" aria-pressed="false"><b>02</b><span>Dark art</span><i class="he-bar"><i></i></i></button></li>
+        <li><button type="button" class="he" data-i="2" aria-pressed="false"><b>03</b><span>Blackwork</span><i class="he-bar"><i></i></i></button></li>
+        <li><button type="button" class="he" data-i="3" aria-pressed="false"><b>04</b><span>Lettering</span><i class="he-bar"><i></i></i></button></li>
+      </ol>
       <div class="hero-btns">
         <a class="btn" href="https://wa.me/5519989587985?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
@@ -87,21 +93,12 @@
         </a>
         <a class="btn btn-sec" href="#trabalhos">Ver trabalhos</a>
       </div>
-      <ul class="hero-info">
-        <li>Estúdio privado</li>
-        <li>Hora marcada</li>
-        <li>Pix, dinheiro ou cartão</li>
-      </ul>
     </div>
 
-    <div class="hx" data-slides='[{"src":"assets/img/hero-1.webp","leg":"Fechamento floral"},{"src":"assets/img/hero-2.webp","leg":"Dark art, anjos"},{"src":"assets/img/hero-3.webp","leg":"Reforma e fechamento"},{"src":"assets/img/hero-4.webp","leg":"Olho, rosa e ornamento"}]'>
+    <div class="hx" data-slides='[{"src":"assets/img/hero-1.webp","leg":"Fechamento floral no antebraço"},{"src":"assets/img/hero-2.webp","leg":"Anjos em preto e cinza"},{"src":"assets/img/hero-3.webp","leg":"Lobo em preto sólido"},{"src":"assets/img/hero-4.webp","leg":"Frase na coluna com flor"}]'>
       <div class="hx-frame">
         <img class="hx-full" src="assets/img/hero-1.webp" width="1000" height="1250" alt="Fechamento floral em preto e cinza no antebraço" fetchpriority="high">
-      </div>
-      <div class="hx-cap" aria-live="off">
-        <span class="hx-num">01 / 04</span>
-        <span class="hx-bar"><i></i></span>
-        <span class="hx-leg">Fechamento floral</span>
+        <p class="hx-tag"><b>01</b><span>Fechamento floral no antebraço</span></p>
       </div>
     </div>
   </div>

@@ -35,7 +35,7 @@ OBRAS = [
     ('70_DVAIlRWETHt_1.jpg', 'floral', 'Lírios em preto e cinza', .5),
     ('55_DZd_czWxpFH_1.jpg', 'blackwork', 'Gato boxeador, old school', .45),
 ]
-HERO = ['13_DeNnoy9RTR2_1.jpg', '61_DYdPAWyxdKP_1.jpg', '32_DcxNykERk_1_1.jpg', '54_DZn2mzuRHQm_1.jpg']
+HERO = ['13_DeNnoy9RTR2_1.jpg', '61_DYdPAWyxdKP_1.jpg', '56_DZd_EDfx_Ap_1.jpg', '22_DdWszAfxRcN_1.jpg']  # floral, dark art, blackwork, lettering
 ESTILOS = {
     'floral': '46_DbwhDIqx_MI_1.jpg', 'blackwork': '56_DZd_EDfx_Ap_1.jpg',
     'dark': '71_DUi1xGkEbuP_1.jpg', 'lettering': '18_Dd2AE7nPWXK_1.jpg',
