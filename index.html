@@ -20,12 +20,18 @@
 <link rel="preload" as="image" href="assets/img/hero-1.webp">
 <link rel="preload" as="image" href="assets/logo.webp">
 <link rel="stylesheet" href="assets/site.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(){var h=document.documentElement;h.classList.add('js');try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches)h.classList.add('js-intro')}catch(e){}})()</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TattooParlor","name":"Fragmentado Tattoo Studio","image":"https://azeugral.github.io/fragmentado-tattoo/og.jpg","telephone":"+55 19 98958-7985","address":{"@type":"PostalAddress","addressLocality":"Santa Bárbara d'Oeste","addressRegion":"SP","addressCountry":"BR"},"sameAs":["https://www.instagram.com/fragmentadotattoo/"]}
 </script>
 </head>
 <body>
+
+<div class="intro" aria-hidden="true">
+  <div class="intro-h intro-a"><span class="logo"><span class="logo-marca"></span><span class="logo-sub">Tattoo Studio</span></span></div>
+  <div class="intro-h intro-b"><span class="logo"><span class="logo-marca"></span><span class="logo-sub">Tattoo Studio</span></span></div>
+  <svg class="intro-trinca" viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="0,56 9,51 17,57 28,49 39,54 50,46 61,53 72,47 83,52 92,45 100,49"/></svg>
+</div>
 
 <header class="top">
   <div class="wrap">
@@ -59,6 +65,13 @@
 <main>
 
 <section class="hero" id="inicio">
+  <div class="hero-fx" aria-hidden="true"></div>
+  <svg class="hero-trinca" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <polyline points="0,80 11,74 19,77 30,66 43,68 54,55 62,58 73,44 85,41 92,30 100,27"/>
+    <polyline class="ramo" points="54,55 57,62 55,70"/>
+    <polyline class="ramo" points="73,44 78,50 84,52"/>
+    <polyline class="ramo" points="30,66 32,58"/>
+  </svg>
   <div class="wrap">
     <div class="hero-txt">
       <p class="kicker">Santa Bárbara d'Oeste · SP</p>
@@ -139,10 +152,11 @@
 </section>
 
 <section class="sec sec-alt" id="estilos">
+  <div class="trinca" aria-hidden="true"><svg viewBox="0 0 1000 28" preserveAspectRatio="none"><polyline points="0,14 70,10 140,17 230,8 300,15 380,11 450,20 520,9 600,16 690,7 760,15 840,10 920,18 1000,12"/><polyline class="ramo" points="450,20 462,27"/></svg></div>
   <div class="wrap">
     <div class="sec-head rv">
       <p class="kicker">O que eu faço</p>
-      <h2>Estilos</h2>
+      <h2 data-quebra>Estilos</h2>
       <p>Quatro linhas de trabalho, todas em preto e cinza, com espaço para um toque de cor quando o projeto pede.</p>
     </div>
     <div class="estilos">
@@ -185,10 +199,11 @@
 </section>
 
 <section class="sec sec-alt" id="flash">
+  <div class="trinca" aria-hidden="true"><svg viewBox="0 0 1000 28" preserveAspectRatio="none"><polyline points="0,12 90,18 160,9 250,16 330,7 410,15 500,10 570,19 650,8 740,14 820,9 900,17 1000,11"/><polyline class="ramo" points="690,7 700,1"/></svg></div>
   <div class="wrap">
     <div class="sec-head rv">
       <p class="kicker">Pronto para tatuar</p>
-      <h2>Flash disponíveis</h2>
+      <h2 data-quebra>Flash disponíveis</h2>
       <p>Desenhos prontos da pasta do estúdio. Escolha um, toque nele e mande no WhatsApp com o tamanho e o local.</p>
     </div>
     <div class="flash-preco rv">
@@ -242,10 +257,11 @@
 </section>
 
 <section class="sec sec-alt" id="agendar">
+  <div class="trinca" aria-hidden="true"><svg viewBox="0 0 1000 28" preserveAspectRatio="none"><polyline points="0,15 60,9 150,16 220,11 310,19 390,8 470,14 560,10 640,18 720,9 810,15 890,8 1000,14"/><polyline class="ramo" points="230,8 238,2"/></svg></div>
   <div class="wrap">
     <div class="sec-head rv">
       <p class="kicker">Passo a passo</p>
-      <h2>Como agendar</h2>
+      <h2 data-quebra>Como agendar</h2>
       <p>Do primeiro contato até a sessão, tudo pelo WhatsApp ou pelo direct do Instagram.</p>
     </div>
     <div class="passos rv">
@@ -328,9 +344,10 @@
 </section>
 
 <section class="contato" id="contato">
+  <div class="trinca" aria-hidden="true"><svg viewBox="0 0 1000 28" preserveAspectRatio="none"><polyline points="0,14 70,10 140,17 230,8 300,15 380,11 450,20 520,9 600,16 690,7 760,15 840,10 920,18 1000,12"/><polyline class="ramo" points="450,20 462,27"/></svg></div>
   <div class="wrap rv">
     <p class="kicker">Agenda aberta</p>
-    <h2>Me traga sua ideia</h2>
+    <h2 data-quebra>Me traga<br>sua ideia</h2>
     <p>Orçamento sem compromisso pelo WhatsApp ou pelo direct. Respondo pessoalmente.</p>
     <div class="hero-btns">
       <a class="btn" href="https://wa.me/5519989587985?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20um%20or%C3%A7amento." target="_blank" rel="noopener">WhatsApp (19) 98958-7985</a>

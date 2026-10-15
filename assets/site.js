@@ -23,11 +23,41 @@
   addEventListener('resize', () => { if (innerWidth > 1024 && !menu.hidden) fecharMenu(); });
   addEventListener('scroll', aoRolar, { passive: true }); aoRolar();
 
+  /* ---------- intro: sai do DOM quando as metades terminam de abrir ---------- */
+  const intro = d.querySelector('.intro');
+  if (intro) {
+    if (!root.classList.contains('js-intro')) intro.remove();
+    else setTimeout(() => intro.remove(), 2700);
+  }
+
+  /* ---------- títulos quebrados (cada linha vira 3 camadas: topo, fio vermelho, base deslocada) ---------- */
+  d.querySelectorAll('[data-quebra]').forEach((h, n) => {
+    h.innerHTML = h.innerHTML.split(/<br\s*\/?>/i).map((t, k) =>
+      `<span class="quebra${(n + k) % 2 ? ' alt' : ''}"><span class="q1">${t}</span><span class="q3" aria-hidden="true">${t}</span><span class="q2" aria-hidden="true">${t}</span></span>`
+    ).join('<br>');
+  });
+
   /* ---------- revelar ao rolar ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
   }), { rootMargin: '0px 0px -8% 0px' });
-  d.querySelectorAll('.rv').forEach(el => io.observe(el));
+  d.querySelectorAll('.rv, .trinca').forEach(el => io.observe(el));
+
+  /* ---------- fundo da hero: cacos flutuando devagar ---------- */
+  const fx = d.querySelector('.hero-fx');
+  if (fx) {
+    let q = 11;
+    const r = () => (q = (q * 16807) % 2147483647) / 2147483647;
+    const formas = ['50% 0,100% 100%,0 72%', '0 0,100% 30%,40% 100%', '20% 0,100% 55%,0 100%', '0 20%,100% 0,70% 100%'];
+    const n = innerWidth < 640 ? 9 : 16;
+    let html = '';
+    for (let k = 0; k < n; k++) {
+      const vermelho = k % 4 === 1;
+      const tam = (vermelho ? 10 : 14) + r() * (innerWidth < 640 ? 34 : 60);
+      html += `<i class="${vermelho ? 'v' : ''}" style="--x:${(r() * 96).toFixed(1)}%;--y:${(8 + r() * 84).toFixed(1)}%;--s:${tam.toFixed(0)}px;--p:polygon(${formas[k % 4]});--r:${(r() * 360).toFixed(0)}deg;--rr:${((r() - .5) * 60).toFixed(0)}deg;--mx:${((r() - .5) * 40).toFixed(0)}px;--my:${(-10 - r() * 40).toFixed(0)}px;--t:${(7 + r() * 8).toFixed(1)}s;--e:${(r() * .9).toFixed(2)}s"></i>`;
+    }
+    fx.innerHTML = html;
+  }
 
   /* ---------- hero: foto que se monta em fragmentos ---------- */
   const hx = d.querySelector('.hx');
@@ -113,15 +143,15 @@
       atual = prox; legenda(atual); ocupado = false; agenda();
     }
 
-    // primeira montagem
-    legenda(0);
+    // primeira montagem: espera a intro abrir a página
     if (!calmo) {
       full.style.visibility = 'hidden';
-      carrega(slides[0].src).then(() => {
+      const espera = root.classList.contains('js-intro') ? 1350 : 120;
+      Promise.all([carrega(slides[0].src), new Promise(r => setTimeout(r, espera))]).then(() => {
         const g = montarSet(slides[0].src);
-        anima(g, true).then(() => { full.style.visibility = ''; g.remove(); agenda(); });
+        anima(g, true).then(() => { full.style.visibility = ''; g.remove(); legenda(0); agenda(); });
       });
-    } else agenda();
+    } else { legenda(0); agenda(); }
 
     // pausa fora da tela ou com a aba escondida
     new IntersectionObserver(([e]) => { visivel = e.isIntersecting; visivel ? agenda() : clearTimeout(timer); }).observe(hx);

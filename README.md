@@ -17,6 +17,9 @@ Estático (HTML, CSS e JS puros), publicado no GitHub Pages: https://azeugral.gi
 - Logo (v2): "FRAGMENTADO" em pincel seco, na linha do letreiro que o estúdio já usa. Gerada por IA em branco sobre preto e recortada em `assets/logo.png`/`.webp`. No site ela é aplicada como máscara com gradiente prata. O ícone é um "F" isolado no mesmo pincel (`_ref/logo/f.png`).
 - Fundo (v2): minimalista, preto com um brilho vermelho suave em gradiente CSS. A obsidiana da v1 saiu.
 - Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada 6 s. Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
+- Intro (v3): a logo é pintada no centro, uma trinca vermelha a atravessa e a tela se parte em duas metades que abrem para a hero (cerca de 2,4 s). Depois, cada peça da hero entra em sequência.
+- Fundo da hero (v3): cacos de vidro flutuando devagar (alguns vermelhos) e uma trinca vermelha fina que se desenha no fundo.
+- Quebras em vermelho (v3): trincas entre seções, que se desenham ao rolar, e títulos partidos com fio vermelho (Estilos, Flash, Como agendar, contato).
 
 ## CONFIRMAR com o cliente
 
