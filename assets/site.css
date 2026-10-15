@@ -28,14 +28,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .lock{overflow:hidden}
 
 /* ---------- logo ---------- */
-.logo{display:inline-flex;flex-direction:column;align-items:center;line-height:1;gap:.32em}
-.logo-word{position:relative;display:block;font-family:var(--f-disp);font-weight:400;letter-spacing:.02em;text-transform:uppercase;font-size:1em;padding-right:.05em}
-.logo-word span{display:block;background:linear-gradient(180deg,#fff 0%,#d7d7db 46%,#8f8f96 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.logo-word .a{clip-path:polygon(0 0,100% 0,100% 40%,0 63%)}
-.logo-word .b{position:absolute;inset:0;clip-path:polygon(0 63%,100% 40%,100% 100%,0 100%);transform:translate(.045em,.04em)}
-.logo-word .c{position:absolute;inset:0;background:var(--vermelho);-webkit-background-clip:text;background-clip:text;clip-path:polygon(0 61%,100% 38%,100% 44%,0 67%);transform:translate(.02em,.02em)}
-.logo-sub{font:500 .2em/1 var(--f-mono);letter-spacing:.55em;text-transform:uppercase;color:var(--muted);padding-left:.55em}
-.logo-crown{width:.62em;height:auto;color:var(--prata);margin-bottom:.06em}
+.logo{display:inline-flex;flex-direction:column;align-items:center;line-height:1;gap:.14em}
+.logo-marca{display:block;width:5.6em;aspect-ratio:1400/341;background:linear-gradient(180deg,#fff 0%,#e4e4e8 45%,#a9a9b0 100%);-webkit-mask:url(logo.webp) center/contain no-repeat;mask:url(logo.webp) center/contain no-repeat}
+.logo-sub{display:flex;align-items:center;gap:.7em;font:500 .19em/1 "Cinzel",Georgia,serif;letter-spacing:.42em;text-transform:uppercase;color:#d2d2d6;padding-left:.42em;white-space:nowrap}
+.logo-sub::before,.logo-sub::after{content:"";width:.45em;height:.45em;background:var(--vermelho);transform:rotate(45deg);flex:none}
 
 /* ---------- botões (retos, canto cortado) ---------- */
 .btn{--bg:var(--vermelho);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 26px;font:600 15px/1 var(--f-txt);letter-spacing:.02em;background:var(--bg);color:#fff;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .32s var(--ease),background-color .32s var(--ease),filter .32s var(--ease)}
@@ -50,8 +46,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .top{position:fixed;inset:0 0 auto;z-index:50;transition:background-color .35s var(--ease),box-shadow .35s var(--ease)}
 .top.solid{background:rgba(7,7,8,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
-.top .logo{font-size:26px;align-items:flex-start}
-.top .logo-sub{font-size:8px;letter-spacing:.5em;padding-left:2px}
+.top .logo{font-size:27px}
+.top .logo-sub{font-size:7px;letter-spacing:.38em}
 .nav{display:flex;gap:28px;font-size:14px;color:var(--muted)}
 .nav a{position:relative;padding:6px 0;transition:color .3s var(--ease)}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--vermelho);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
@@ -71,13 +67,15 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @keyframes entra{to{opacity:1;transform:none}}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:100px 0 56px;background:#050506 url(img/fundo-d.webp) center/cover no-repeat;isolation:isolate}
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding:100px 0 56px;background:radial-gradient(60% 55% at 74% 46%,rgba(211,20,31,.13),transparent 70%),radial-gradient(90% 70% at 20% 0%,#141417,transparent 70%),var(--preto);isolation:isolate}
 .hero::after{content:"";position:absolute;inset:auto 0 0;height:160px;background:linear-gradient(transparent,var(--preto));z-index:-1}
 .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,6vw,80px);align-items:center}
 .kicker{font:500 12px/1.4 var(--f-mono);letter-spacing:.18em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
 .kicker::before{content:"";width:28px;height:1px;background:var(--vermelho)}
-.hero .logo{font-size:clamp(56px,8.6vw,124px);margin:22px 0 26px;align-items:flex-start}
-.hero .logo-sub{font-size:.16em;letter-spacing:.62em}
+.hero .logo{font-size:clamp(52px,7.6vw,108px);margin:24px 0 28px}
+.hero .logo{display:flex;width:min(100%,5.6em)}
+.hero .logo-marca{width:100%}
+.hero .logo-sub{font-size:.17em}
 .hero-txt p.lead{font-size:clamp(17px,1.5vw,19px);color:#c9c9ce;max-width:34em;margin:0 0 30px}
 .hero-btns{display:flex;flex-wrap:wrap;gap:12px}
 .hero-info{display:flex;flex-wrap:wrap;gap:8px 22px;margin:32px 0 0;padding:0;list-style:none;font:500 12px/1.4 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -209,7 +207,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .faq .r p{margin:0 0 22px;color:var(--muted);max-width:44em}
 
 /* contato */
-.contato{position:relative;background:#050506 url(img/fundo-d.webp) center/cover no-repeat;text-align:center;padding:clamp(88px,12vw,150px) 0}
+.contato{position:relative;background:radial-gradient(50% 60% at 50% 50%,rgba(211,20,31,.12),transparent 72%),var(--preto);text-align:center;padding:clamp(88px,12vw,150px) 0}
 .contato::before{content:"";position:absolute;inset:0;background:linear-gradient(var(--preto),rgba(7,7,8,.3) 30%,rgba(7,7,8,.3) 70%,var(--preto))}
 .contato .wrap{position:relative}
 .contato h2{font:400 clamp(48px,8vw,110px)/.95 var(--f-disp);text-transform:uppercase;margin:16px 0 20px}
@@ -224,8 +222,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 /* rodapé */
 .rodape{border-top:1px solid var(--linha);padding:40px 0 32px}
 .rodape .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
-.rodape .logo{font-size:30px;align-items:flex-start}
-.rodape .logo-sub{font-size:8px;padding-left:2px}
+.rodape .logo{font-size:30px}
+.rodape .logo-sub{font-size:7.5px}
 .rodape small{font-size:13px;color:var(--muted);line-height:1.7}
 .rodape small a{color:var(--texto);text-decoration:underline;text-underline-offset:3px}
 
@@ -260,11 +258,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .flashes{grid-template-columns:repeat(4,1fr)}
 }
 @media (max-width:820px){
-  .hero{align-items:flex-start;padding:92px 0 48px;background-image:url(img/fundo-m.webp)}
+  .hero{align-items:flex-start;padding:92px 0 48px}
   .hero .wrap{grid-template-columns:1fr;gap:28px}
   .hero-txt{display:contents}
   .hero .kicker{order:1}
-  .hero .logo{order:2;margin:0;font-size:clamp(48px,15.5vw,96px)}
+  .hero .logo{order:2;margin:0;font-size:clamp(46px,14vw,92px);align-self:center}
+  .hero .kicker{justify-content:center}
   .hx{order:3;justify-self:center;max-width:420px}
   .hero-txt p.lead{order:4;margin:0}
   .hero-btns{order:5}
@@ -273,7 +272,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .regras{grid-template-columns:1fr}
   .depos{grid-template-columns:1fr}
   .domicilio{grid-template-columns:1fr;gap:14px}
-  .contato{background-image:url(img/fundo-m.webp)}
   .top-cta .btn{display:none}
   .barra-mob{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(7,7,8,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 -1px 0 var(--linha);transform:translateY(110%);transition:transform .45s var(--ease)}
   .barra-mob.on{transform:none}

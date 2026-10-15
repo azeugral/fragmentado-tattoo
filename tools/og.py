@@ -1,64 +1,44 @@
-# Gera og.jpg (1200x630), favicon-64.png e apple-touch-icon.png com o logo fraturado.
+# Gera og.jpg (1200x630), favicon-64.png e apple-touch-icon.png a partir de assets/logo.png.
 # Uso: python -I tools/og.py  (rodar da pasta site/)
 import os
-from PIL import Image, ImageDraw, ImageFont, ImageChops
+from PIL import Image, ImageDraw, ImageFont
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REF = os.path.join(os.path.dirname(BASE), '_ref')
-ANTON = os.path.join(REF, 'fontes', 'Anton.ttf')
 PLEX = os.path.join(REF, 'fontes', 'Plex.ttf')
-VERM = (211, 20, 31)
+PRETO, VERM = (7, 7, 8), (211, 20, 31)
+logo = Image.open(os.path.join(BASE, 'assets', 'logo.png')).convert('RGBA')
 
 
-def prata(w, h):
-    g = Image.new('RGB', (1, h))
-    for y in range(h):
-        t = y / max(1, h - 1)
-        v = int(255 - t * 0.44 * 255) if t < 1 else 143
-        g.putpixel((0, y), (v, v, min(255, v + 4)))
-    return g.resize((w, h))
+def brilho(w, h, cx, cy, r, cor, forca):
+    # mancha radial suave sobre o preto (o mesmo brilho vermelho do site)
+    g = Image.new('L', (w, h), 0); d = ImageDraw.Draw(g)
+    for k in range(60, 0, -1):
+        v = int(255 * forca * (1 - k / 60) ** 2)
+        d.ellipse((cx - r * k / 60, cy - r * k / 60 * .7, cx + r * k / 60, cy + r * k / 60 * .7), fill=v)
+    base = Image.new('RGB', (w, h), PRETO)
+    base.paste(Image.new('RGB', (w, h), cor), (0, 0), g)
+    return base
 
 
-def palavra(txt, size, desloc=.045):
-    f = ImageFont.truetype(ANTON, size)
-    x0, y0, x1, y1 = f.getbbox(txt)
-    w, h = x1 - x0 + int(size * .12), y1 - y0 + int(size * .12)
-    m = Image.new('L', (w, h), 0)
-    ImageDraw.Draw(m).text((-x0, -y0), txt, font=f, fill=255)
-    # corte diagonal: de 63% da altura (esq.) a 40% (dir.)
-    cima = Image.new('L', (w, h), 0); baixo = Image.new('L', (w, h), 0); fio = Image.new('L', (w, h), 0)
-    ImageDraw.Draw(cima).polygon([(0, 0), (w, 0), (w, h * .40), (0, h * .63)], fill=255)
-    ImageDraw.Draw(baixo).polygon([(0, h * .63), (w, h * .40), (w, h), (0, h)], fill=255)
-    ImageDraw.Draw(fio).polygon([(0, h * .61), (w, h * .38), (w, h * .44), (0, h * .67)], fill=255)
-    out = Image.new('RGBA', (w, h), (0, 0, 0, 0))
-    dx, dy = int(size * desloc), int(size * .04)
-    tex = prata(w, h)
-    fio_m = ImageChops.multiply(m, fio)
-    out.paste(Image.new('RGB', (w, h), VERM), (int(size * .02), int(size * .02)), fio_m)
-    out.paste(tex, (0, 0), ImageChops.multiply(m, cima))
-    tb = ImageChops.multiply(m, baixo)
-    out.paste(tex.transform(tex.size, Image.AFFINE, (1, 0, -dx, 0, 1, -dy)), (dx, dy), tb)
-    return out
-
-
-# og
-fundo = Image.open(os.path.join(REF, 'fundo', 'd.png')).convert('RGB')
-fw, fh = fundo.size
-fundo = fundo.crop((0, (fh - int(fw * 630 / 1200)) // 2, fw, (fh + int(fw * 630 / 1200)) // 2)).resize((1200, 630), Image.LANCZOS)
-og = fundo.copy()
-lg = palavra('FRAGMENTADO', 170)
-og.paste(lg, ((1200 - lg.width) // 2, 190), lg)
+og = brilho(1200, 630, 600, 300, 620, VERM, .16)
+lw = 900; lg = logo.resize((lw, round(lw * logo.height / logo.width)), Image.LANCZOS)
+y = 150
+og.paste(lg, ((1200 - lw) // 2, y), lg)
 d = ImageDraw.Draw(og)
-fs = ImageFont.truetype(PLEX, 22)
-for txt, y, cor in (('T A T T O O   S T U D I O', 190 + lg.height + 18, (170, 170, 176)),
-                    ('Santa Bárbara d\'Oeste · SP', 190 + lg.height + 70, (236, 236, 238))):
-    w = d.textlength(txt, font=fs); d.text(((1200 - w) / 2, y), txt, font=fs, fill=cor)
+fs = ImageFont.truetype(PLEX, 24)
+for txt, yy, cor in (('T A T T O O   S T U D I O', y + lg.height + 28, (210, 210, 214)),
+                     ('Santa Bárbara d\'Oeste · SP', y + lg.height + 84, (157, 157, 164))):
+    w = d.textlength(txt, font=fs); d.text(((1200 - w) / 2, yy), txt, font=fs, fill=cor)
 og.save(os.path.join(BASE, 'og.jpg'), quality=86)
 
-# ícones: um "F" fraturado
+# ícone: "F" isolado no mesmo pincel (_ref/logo/f.png, gerado por IA em branco sobre preto)
+g = Image.open(os.path.join(REF, 'logo', 'f.png')).convert('L')
+g = g.point(lambda v: 0 if v < 30 else 255 if v > 200 else int((v - 30) * 255 / 170))
+f = Image.new('RGBA', g.size, (255, 255, 255, 0)); f.putalpha(g); f = f.crop(g.getbbox())
 for nome, tam in (('favicon-64.png', 64), ('apple-touch-icon.png', 180)):
-    ic = Image.new('RGB', (tam, tam), (7, 7, 8))
-    f = palavra('F', int(tam * .9), .06)
-    ic.paste(f, ((tam - f.width) // 2 + int(tam * .03), (tam - f.height) // 2), f)
+    ic = Image.new('RGB', (tam, tam), PRETO)
+    s = tam * .82 / max(f.size); ff = f.resize((round(f.width * s), round(f.height * s)), Image.LANCZOS)
+    ic.paste(ff, ((tam - ff.width) // 2, (tam - ff.height) // 2), ff)
     ic.save(os.path.join(BASE, nome))
 print('ok')

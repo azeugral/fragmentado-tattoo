@@ -8,14 +8,14 @@ Estático (HTML, CSS e JS puros), publicado no GitHub Pages: https://azeugral.gi
 - `index.html`: página única (hero, trabalhos, estilos, fechamento, flash, estúdio, agendamento, feedbacks, dúvidas, contato).
 - `assets/site.css`, `assets/site.js`: estilo e interações (hero em fragmentos, filtro, lightbox, revelar ao rolar).
 - `assets/img/`: imagens geradas por `tools/processar.py` a partir de `_ref/ig` (extração do Instagram, fora do repo).
-- `tools/og.py`: gera `og.jpg`, `favicon-64.png` e `apple-touch-icon.png` com o logo fraturado.
+- `tools/og.py`: gera `og.jpg`, `favicon-64.png` e `apple-touch-icon.png` a partir da logo.
 
 ## Identidade
 
 - Paleta: preto `#070708`, carvão `#0e0e10`, prata `#dcdce0`, vermelho `#d3141f` (o vermelho dos posts do estúdio).
-- Fontes: Anton (logo e títulos), IBM Plex Sans (texto), JetBrains Mono (etiquetas).
-- Logo: "FRAGMENTADO" partido na diagonal, com a metade de baixo deslocada e um fio vermelho na fratura.
-- Fundo: obsidiana estilhaçada com brilho vermelho nas fissuras, gerada por IA (versões desktop e mobile).
+- Fontes: Anton (títulos), Cinzel ("Tattoo Studio" sob a logo), IBM Plex Sans (texto), JetBrains Mono (etiquetas).
+- Logo (v2): "FRAGMENTADO" em pincel seco, na linha do letreiro que o estúdio já usa. Gerada por IA em branco sobre preto e recortada em `assets/logo.png`/`.webp`. No site ela é aplicada como máscara com gradiente prata. O ícone é um "F" isolado no mesmo pincel (`_ref/logo/f.png`).
+- Fundo (v2): minimalista, preto com um brilho vermelho suave em gradiente CSS. A obsidiana da v1 saiu.
 - Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada 6 s. Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
 
 ## CONFIRMAR com o cliente

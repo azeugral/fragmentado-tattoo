@@ -91,11 +91,6 @@ save(crop(abre(os.path.join(IG, 'perfil.jpg')), 4 / 5, .3), 'artista.webp', 800)
 save(crop(abre(os.path.join(IG, 'posts', '17_Dd2SgBnTSBF_1.jpg')), 4 / 5, .5), 'artista-2.webp', 800)
 save(crop(abre(os.path.join(IG, 'posts', '49_DbbqZzCkaS3_3.jpg')), 4 / 3, .5), 'convencao.webp', 900)
 
-for k, w in (('d', 1920), ('m', 900)):
-    im = abre(os.path.join(REF, 'fundo', k + '.png'))
-    im = ImageEnhance.Brightness(im).enhance(.92)
-    save(im, f'fundo-{k}.webp', w, 74)
-
 with open(os.path.join(BASE, 'tools', 'obras.json'), 'w', encoding='utf-8') as fh:
     json.dump(meta, fh, ensure_ascii=False, indent=1)
 print('ok', len(meta))
