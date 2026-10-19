@@ -16,10 +16,12 @@ Estático (HTML, CSS e JS puros), publicado no GitHub Pages: https://azeugral.gi
 - Fontes: Anton (títulos), Cinzel ("Tattoo Studio" sob a logo), IBM Plex Sans (texto), JetBrains Mono (etiquetas).
 - Logo (v2): "FRAGMENTADO" em pincel seco, na linha do letreiro que o estúdio já usa. Gerada por IA em branco sobre preto e recortada em `assets/logo.png`/`.webp`. No site ela é aplicada como máscara com gradiente prata. O ícone é um "F" isolado no mesmo pincel (`_ref/logo/f.png`).
 - Fundo (v2): minimalista, preto com um brilho vermelho suave em gradiente CSS. A obsidiana da v1 saiu.
-- Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada 6 s. Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
+- Hero: a foto se monta a partir de 40 fragmentos (24 no celular) e troca a cada ~3 s (transição mais curta desde 19/10). Sem efeito de mouse. Com "reduzir movimento" ativo, vira um fade simples.
 - Intro (v3): a logo é pintada no centro, uma trinca vermelha a atravessa e a tela se parte em duas metades que abrem para a hero (cerca de 2,4 s). Depois, cada peça da hero entra em sequência.
 - Fundo da hero (v3): cacos de vidro flutuando devagar (alguns vermelhos) e uma trinca vermelha fina que se desenha no fundo.
 - Hero (v6): de volta às duas colunas. À esquerda ficam a logo, o texto de estilos, os botões e os selos (estúdio privado, hora marcada, pagamento); à direita, a foto que troca sozinha a cada 6 s em fragmentos. A nav não tem logo: os links e o botão "Pedir orçamento" (vermelho, com ícone do WhatsApp e sombra) ficam juntos no centro, separados por um fio. No celular o botão fica ao lado do menu.
+- Nav (v7): o "F" em pincel (`assets/marca.webp`) fica à esquerda e leva de volta ao início.
+- Toque (v7): as imagens não podem ser arrastadas nem abrem o menu de salvar ao segurar. O zoom de hover só existe onde há mouse. Os carrosséis do mobile têm `overflow-y:hidden`: sem isso, a sobra vertical da animação fazia o carrossel prender a rolagem do dedo.
 - Quebras em vermelho (v3): trincas entre seções, que se desenham ao rolar, e títulos partidos com fio vermelho (Estilos, Flash, Como agendar, contato).
 
 ## CONFIRMAR com o cliente

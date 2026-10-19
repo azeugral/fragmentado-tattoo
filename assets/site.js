@@ -65,7 +65,7 @@
     const frame = hx.querySelector('.hx-frame'), full = hx.querySelector('.hx-full');
     const slides = JSON.parse(hx.dataset.slides);
     const tag = hx.querySelector('.hx-tag'), botoes = [...d.querySelectorAll('.he')];
-    const HOLD = 6000;
+    const HOLD = 3200;
     let atual = 0, timer = 0, visivel = true, ocupado = false, pendente = null;
 
     // triângulos sobre uma malha com pontos deslocados (semente fixa: sempre o mesmo corte)
@@ -110,14 +110,14 @@
       const fora = `translate(${(vx * k + (rnd() - .5) * 20).toFixed(1)}%,${(vy * k + (rnd() - .5) * 20).toFixed(1)}%) rotate(${((rnd() - .5) * 50).toFixed(1)}deg) scale(.84)`;
       const kf = [{ transform: fora, opacity: 0 }, { transform: 'none', opacity: 1 }];
       return el.animate(entrada ? kf : kf.reverse(), {
-        duration: entrada ? 1100 : 750,
-        delay: entrada ? 250 + (70 - dist) * 6 + rnd() * 160 : dist * 3 + rnd() * 120,
+        duration: entrada ? 820 : 520,
+        delay: entrada ? 120 + (70 - dist) * 4 + rnd() * 110 : dist * 2 + rnd() * 80,
         easing: entrada ? EASE : 'cubic-bezier(.5,0,.75,0)',
         fill: 'both'
       }).finished;
     }));
 
-    const legenda = (i, dur = HOLD + (calmo ? 600 : 1500)) => {
+    const legenda = (i, dur = HOLD + (calmo ? 600 : 1100)) => {
       botoes.forEach((b, k) => {
         const on = k === i, barra = b.querySelector('.he-bar i');
         b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on));

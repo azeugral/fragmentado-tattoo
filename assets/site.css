@@ -475,6 +475,32 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
   .btn-nav svg{width:16px;height:16px}
 }
 
+
+/* ================= v7: marca na nav, toque sem agarrar ================= */
+.top .wrap{position:relative}
+.home{position:absolute;left:var(--g);top:50%;transform:translateY(-50%);display:grid;place-items:center;width:48px;height:48px;transition:transform .35s var(--ease)}
+.home:active{transform:translateY(-50%) scale(.94)}
+.home-f{display:block;width:30px;aspect-ratio:131/160;background:linear-gradient(180deg,#fff 0%,#dcdce0 50%,#a3a3aa 100%);-webkit-mask:url(marca.webp) center/contain no-repeat;mask:url(marca.webp) center/contain no-repeat}
+@media (max-width:820px){
+  .home{left:calc(var(--g) - 8px)}
+  .home-f{width:27px}
+}
+
+/* imagens não são arrastáveis nem abrem o menu de "salvar imagem" ao segurar */
+img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.obra-img img,.flash img,.estilo-img img,.fech-img img,.estudio-img img,.hx-full,.hx-set{pointer-events:none}
+/* zoom de hover só onde existe mouse: no toque ele "grudava" depois do toque */
+@media (hover:none){
+  .obra:hover .obra-img img,.flash:hover img{transform:none}
+}
+/* carrosséis do mobile: encaixe suave e sem puxar a página para os lados */
+@media (max-width:640px){
+  /* overflow-y:hidden: com overflow-x:auto o eixo y vira auto e a sobra da animação de entrada fazia o carrossel 'segurar' o gesto vertical */
+  .estilos,.depos,.filtros{overflow-y:hidden;touch-action:pan-x pan-y;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+}
+.lb{overscroll-behavior:contain;touch-action:pinch-zoom}
+.lb img{pointer-events:none}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
   html{scroll-behavior:auto}
